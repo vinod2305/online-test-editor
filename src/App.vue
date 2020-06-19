@@ -1,31 +1,43 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Online Test Editor</router-link> 
+      <router-link to="/" class="heading">Online Test Editor</router-link> 
     </div>
     <router-view/>
   </div>
 </template>
 
 <style lang="scss">
+body {
+  background: #fffafa;
+  margin: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #fffafa;
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  overflow: hidden;
+  border-bottom: 0.8px solid #ececf0;
+  width: 100%;
+  margin-bottom: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  .heading{
+      font-size: 30px;
+      text-align: left;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
   }
+  
 }
 </style>

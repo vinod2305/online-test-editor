@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <button @click="logout" class="add1" style="right: 0; position: absolute;">Logout</button>
+    <button @click="logout" class="logout" style="right: 0; position: absolute;">Logout</button>
     <div class="frame">
       <div class="list">
         <div class="head">
@@ -99,21 +99,28 @@ button {
 input {
   font-size: 12px;
 }
-.titile {
-  font-size: 25px;
-  font-weight: 700;
-  padding: 0 0 10px 0;
-  margin: 0 0 10px 0;
-  border-bottom: 1px solid #666;
-  margin: 20px;
+
+.logout{
+  background: #e72c2c;
+  margin-left: 80%;
+  color: #fff;
+  width: 100px;
+  height: 35px;
+  border-radius: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border-style: none;
 }
 .titles {
   display: flex;
-  width: 100%;
-  margin: 0 0 10px;
+  width: 97%;
+  margin: 0 10px 15px;
   padding-top: 3px;
   box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .content {
   display: flex;
@@ -128,44 +135,35 @@ input {
 .delete {
   flex: 2;
   transform: translateY(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
-.frame1 {
+.frame {
   position: absolute;
-  width: 400px;
+  width: 650px;
   height: 800px;
-  top: 40%;
-  left: 10%;
-  margin: -200px 0 0 0px;
-  border-radius: 3px;
-  box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
-  font-family: "Open Sans", Helvetica, sans-serif;
-  color: #497081;
-}
-.frame2 {
-  position: absolute;
-  width: 400px;
-  height: 800px;
-  top: 40%;
-  right: 10%;
-  margin: -200px 0 0 0px;
+  left: 50%;
+  transform: translateX(-325px);
   border-radius: 3px;
   box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
   font-family: "Open Sans", Helvetica, sans-serif;
   color: #497081;
 }
 .inputbar {
-  margin-top: 0px;
-  margin-left: 3px;
-  .button1 {
-    z-index: 10;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    width: 365px;
-    height: 20px;
-    border-radius: 5px;
-    background: #fff;
-    font-size: 20px;
-    outline: 0;
-    max-width: 100%;
+  margin-top: 15px;
+  
+  textarea{
+    padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+    width: 600px;
+    height: 100px;
+    padding: 10px;
   }
 }
 .button1select {
@@ -194,10 +192,8 @@ input {
 }
 .list {
   position: absolute;
-  width: 380px;
+  width: 100%;
   height: 780px;
-  top: 10px;
-  left: 10px;
   background: #ffffff;
   border-radius: 3px;
   .head {
@@ -243,25 +239,5 @@ input {
     }
   }
 }
-@media only screen and (max-width: 450px) {
-  .list {
-    background: #fda231;
-    background: -webkit-linear-gradient(bottom left, #fda231 0%, #fdca31 100%);
-    background: -moz-linear-gradient(bottom left, #fda231 0%, #fdca31 100%);
-    background: -o-linear-gradient(bottom left, #fda231 0%, #fdca31 100%);
-    background: linear-gradient(to top right, #fda231 0%, #fdca31 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FDA231', endColorstr='#FDCA31',GradientType=1 );
-    color: #497081;
-  }
-  .titles {
-    display: flex;
-    width: 95%;
-    margin-left: 2%;
-    margin-bottom: 10px;
-    padding: 7px;
-    box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background: #fff;
-  }
-}
+
 </style>

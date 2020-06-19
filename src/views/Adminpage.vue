@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <button @click="logout" class="add1" style="right: 0; position: absolute;">Logout</button>
+    <button @click="logout" class="logout" style="right: 0; position: absolute;">Logout</button>
     <div class="frame1">
       <div class="list">
         <div class="head">
@@ -216,7 +216,7 @@ input {
   margin: 0 0 10px;
   padding-top: 3px;
   box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .content {
   display: flex;
@@ -282,8 +282,8 @@ input {
     outline: 0;
     max-width: 100%;
 }
-.add1{
-  background: #5ca4ea;
+.logout{
+  background: #e72c2c;
   margin-left: 80%;
   color: #fff;
   width: 100px;
@@ -358,27 +358,6 @@ input {
     &:checked ~ .text {
       color: #c8d4d9;
     }
-  }
-}
-@media only screen and (max-width: 450px) {
-  .list {
-    background: #fda231;
-    background: -webkit-linear-gradient(bottom left, #fda231 0%, #fdca31 100%);
-    background: -moz-linear-gradient(bottom left, #fda231 0%, #fdca31 100%);
-    background: -o-linear-gradient(bottom left, #fda231 0%, #fdca31 100%);
-    background: linear-gradient(to top right, #fda231 0%, #fdca31 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FDA231', endColorstr='#FDCA31',GradientType=1 );
-    color: #497081;
-  }
-  .titles {
-    display: flex;
-    width: 95%;
-    margin-left: 2%;
-    margin-bottom: 10px;
-    padding: 7px;
-    box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background: #fff;
   }
 }
 </style>
