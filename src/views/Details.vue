@@ -3,7 +3,7 @@
     <form @submit.prevent="addDetails">
       <div class="search">
         <label for="usn" class="searchfield">Course Code</label>
-        <select v-model="coursecode">
+        <select v-model="coursecode" class="button1select">
           <option
             v-for="item in this.$store.getters.getCourselist"
             :key="item.id"
@@ -14,7 +14,7 @@
 
       <div class="search">
         <label for="name" class="searchfield">Teacher Name</label>
-        <select v-model="teachername">
+        <select v-model="teachername" class="button1select">
           <option
             v-for="item in this.$store.getters.getTeacherlist"
             :key="item.id"
@@ -138,7 +138,17 @@ export default {
   font-weight: 400;
   font-size: 20px;
 }
-
+.button1select{
+    z-index: 10;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 165px;
+    height: 20px;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 15px;
+    outline: 0;
+    max-width: 100%;
+}
 .question{
   color: rgb(0,0,0);
   margin-top: 10px;
