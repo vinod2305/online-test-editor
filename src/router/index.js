@@ -78,18 +78,19 @@ router.beforeEach((to, from, next) => {
   if (requireteacherAuth && currentTeacher == 'false') next('teacherlogin')
   else if (!requireteacherAuth && currentTeacher == 'true') next();
   else next()
-/*
+
   var currentUser = localStorage.getItem("loggeduser");
   var requireAuth = to.matched.some(record => record.meta.requireAuth);
   if (requireAuth && currentUser == 'false') next('/')
   else if (!requireAuth && currentUser == 'true') next();
   else next()
-*/
+/*
 var currentUser = localStorage.getItem("loggeduser");
 var requireAuth = this.$store.getters.getStudentlog;
 if (requireAuth && currentUser == 'false') next('/')
 else if (!requireAuth && currentUser == 'true') next();
 else next()
+*/
 })
 
 

@@ -64,6 +64,13 @@ export default {
   methods: {
     addStudent() {
       if (this.usn != "" && this.name != "" && this.section != "") {
+        console.log(localStorage.getItem("id"));
+        if (localStorage.getItem("id") != ""){
+          console.log("hello");
+          localStorage.setItem("loggeduser", "true");
+          this.$router.push("/details");
+          return
+        }
         this.$store
           .dispatch("addStudent", {
             usn: this.usn,

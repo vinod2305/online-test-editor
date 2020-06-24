@@ -133,33 +133,6 @@ firestoreUpload(thisRef,file){
         return 
       }
       document.getElementById("loader").style.display = "block";
-   /*    axios.post('http://3.7.167.244:80/', {
-    "lang":this.language,
-    "code":this.code,
-    "id":this.$store.getters.getStudent.usn,
-    "stdin": this.input
-})
-  .then(function (response) {
-    if(response.data.error == ""){
-      document.getElementById("output").value = response.data.output;
-      this.output = response.data.output;
-    }
-    else{
-       document.getElementById("output").value = response.data.error;
-       this.output = response.data.error;
-    }
-    document.getElementById("loader").style.display = "none";
-    
-    
-  })
-  .catch(function (error) {
-         console.log(error);
-        document.getElementById("loader").style.display = "none";
-        alert("Server is busy.... Retry running the CODE. DONOT SUBMIT");
-    
-  });
-  this.run = true;
-  */
  this.axiosTest().then(response => {
   if(response.data.error == ""){
       document.getElementById("output").value = response.data.output;
@@ -210,21 +183,13 @@ firestoreUpload(thisRef,file){
          alert("File Uploaded")
          console.log('Uploaded a blob or file!');
           router.push("/");
+          localStorage.setItem("id", "");
+          localStorage.setItem("loggeduser", "false");
       }).catch(error => {
             alert("Code NOT Submited due to network issue")
             console.log(error);
           });
-      // eslint-disable-next-line no-unused-vars
-    /*  thisRef.put(file).then(function(snapshot) {
-         alert("File Uploaded")
-         console.log('Uploaded a blob or file!');
-          this.$router.push("/");
-      }).catch(error => {
-            alert("Code NOT Submited due to network issue")
-            console.log(error);
-          });
-  */
-       
+
     },
   }
 };
