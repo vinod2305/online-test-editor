@@ -39,6 +39,18 @@ import { db } from "@/main";
 
 export default {
   name: "Deatils",
+  mounted(){
+    console.log( db.collection("studentlist")
+          .doc(localStorage.getItem("id")))
+    this.$store.dispatch("setStudent").then(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
   data() {
     return {
       coursecode: "",
@@ -75,6 +87,7 @@ export default {
       }
     },
     fetchquestion(){
+      
       let questionlist = this.$store.getters.getQuestionlist.filter(item => item.coursecode == this.coursecode);
       console.log(questionlist);
       let x =Math.floor(Math.random() * questionlist.length)

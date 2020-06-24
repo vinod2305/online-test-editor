@@ -70,10 +70,13 @@ export default {
             name: this.name,
             section: this.section
           })
-          .then(() => {})
+          .then(() => {
+            this.$store.dispatch("studentLogin");
+          })
           .catch(
             err => console.log(err),
             localStorage.setItem("loggeduser", "false"),
+            this.$store.dispatch("studentLogout"),
             this.$router.push("/"),
             (this.usn = ""),
             (this.name = ""),

@@ -1,11 +1,11 @@
 <template>
-  <div>
-    
+  <div >
+    <div class="loader" id="loader"></div>
     <div class="language">
           Language
           <select v-model="language" class="button1select" >
             <option disabled value="">Please select one</option>
-            <option>Java</option>
+            <option>java</option>
           </select>
       </div>
     <div class="grid-container">
@@ -27,7 +27,7 @@
         <textarea
           name="text-editor"
           v-model="input"
-          id="text-editor"
+          id="input"
           spellcheck="false"
           data-gramm_editor="false"
           oncopy="return false"
@@ -42,7 +42,7 @@
         <textarea
           name="text-editor"
           v-model="output"
-          id="text-editor"
+          id="output"
           spellcheck="false"
           data-gramm_editor="false"
           oncopy="return false"
@@ -50,6 +50,7 @@
           ondrop="return false"
           onpaste="return false"
           class="output-area"
+          readonly
         ></textarea>
       </div>
       <div class="submit">
@@ -66,26 +67,122 @@
 
 <script>
 import { db } from "@/main";
+import { storageRef } from '@/main';
+import axios from "axios";
+import router from "../router";
+
 
 export default {
   name: "Editor",
+  mounted(){
+    
+    this.$store.dispatch("setStudent").then(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
   data() {
     return {
       language: "",
       code: "",
       input: "",
-      output: ""
+      output: "",
+      run: false,
     };
   },
   methods: {
+    axiosTest() {
+  return axios.post('http://3.7.167.244:80/', {
+    "lang":this.language,
+    "code":this.code,
+    "id":this.$store.getters.getStudent.usn,
+    "stdin": this.input
+})
+  .then(function (response) {
+    return response;
+    
+  })
+  .catch(function (error) {
+         return error;
+    
+  });
+},
+firestoreUpload(thisRef,file){
+  
+  return thisRef.put(file).then(function (response) {
+    return response;
+    
+  })
+  .catch(function (error) {
+         return error;
+    
+  });
+},
     runCode() {
-
+      console.log("hello")
+      if(this.language == ""){
+        alert("Choose a language");
+        return 
+      }
+      if(this.code == ""){
+        alert("Please write some code");
+        return 
+      }
+      document.getElementById("loader").style.display = "block";
+   /*    axios.post('http://3.7.167.244:80/', {
+    "lang":this.language,
+    "code":this.code,
+    "id":this.$store.getters.getStudent.usn,
+    "stdin": this.input
+})
+  .then(function (response) {
+    if(response.data.error == ""){
+      document.getElementById("output").value = response.data.output;
+      this.output = response.data.output;
+    }
+    else{
+       document.getElementById("output").value = response.data.error;
+       this.output = response.data.error;
+    }
+    document.getElementById("loader").style.display = "none";
+    
+    
+  })
+  .catch(function (error) {
+         console.log(error);
+        document.getElementById("loader").style.display = "none";
+        alert("Server is busy.... Retry running the CODE. DONOT SUBMIT");
+    
+  });
+  this.run = true;
+  */
+ this.axiosTest().then(response => {
+  if(response.data.error == ""){
+      document.getElementById("output").value = response.data.output;
+      this.output = response.data.output;
+    }
+    else{
+       document.getElementById("output").value = response.data.error;
+       this.output = response.data.error;
+    }
+    document.getElementById("loader").style.display = "none";
+    this.run = true;
+}).catch(error => {
+        console.log(error);
+        document.getElementById("loader").style.display = "none";
+        alert("Server is busy.... Retry running the CODE. DONOT SUBMIT");
+        this.run = false;
+})
     },
     submit() {
-        console.log(this.language)
-        console.log(this.code)
-        console.log(this.input)
-        console.log(this.output)
+      if(this.run == false){
+        alert("Run the code to submit");
+        return;
+      }
         db.collection("studentlist")
           .doc(localStorage.getItem("id"))
           .update({
@@ -97,7 +194,6 @@ export default {
           .then(response => {
             if (response) {
               // eslint-disable-next-line no-console
-              
               console.log(response);
             }
           })
@@ -105,7 +201,30 @@ export default {
             // eslint-disable-next-line no-console
             console.log(error);
           });
-        this.$router.push("/");
+ 
+           var file = new Blob(["USN:"+this.$store.getters.getStudent.usn+"\r\n\r\n"+"Code:"+"\r\n"+this.code+"\r\n\r\n"+"Input:"+"\r\n"+this.input+"\r\n\r\n"+"Output:"+"\r\n"+this.output], {type: 'text/plain'});
+
+        var thisRef = storageRef.child(this.$store.getters.getStudent.usn+".java");
+      // eslint-disable-next-line no-unused-vars
+      this.firestoreUpload(thisRef,file).then(function(snapshot) {
+         alert("File Uploaded")
+         console.log('Uploaded a blob or file!');
+          router.push("/");
+      }).catch(error => {
+            alert("Code NOT Submited due to network issue")
+            console.log(error);
+          });
+      // eslint-disable-next-line no-unused-vars
+    /*  thisRef.put(file).then(function(snapshot) {
+         alert("File Uploaded")
+         console.log('Uploaded a blob or file!');
+          this.$router.push("/");
+      }).catch(error => {
+            alert("Code NOT Submited due to network issue")
+            console.log(error);
+          });
+  */
+       
     },
   }
 };
@@ -153,7 +272,23 @@ export default {
     outline: 0;
     max-width: 100%;
 }
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #1d252b; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  display: none;
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .text-editor {
   grid-area: text-editor;
   padding: 10px;

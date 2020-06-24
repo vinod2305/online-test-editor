@@ -25,6 +25,7 @@ const config = {
 firebase.initializeApp(config)
 
 export const db = firebase.firestore()
+export var storageRef = firebase.storage().ref();
 new Vue({
   router,
   store,
