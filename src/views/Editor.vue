@@ -103,7 +103,7 @@ export default {
   methods: {
     axiosTest() {
       console.log(https)
-      https.globalAgent.options.rejectUnauthorized = false;
+     
   return axios.post('https://3.7.167.244:443/', {
     "lang":this.language,
     "code":this.code,
