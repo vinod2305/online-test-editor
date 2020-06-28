@@ -104,7 +104,7 @@ export default {
     axiosTest() {
       console.log(https)
      
-  return axios.post('https://3.7.167.244:443/', {
+  return axios.post('http://3.7.167.244:80/', {
     "lang":this.language,
     "code":this.code,
     "id":this.$store.getters.getStudent.usn,
