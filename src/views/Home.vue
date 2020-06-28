@@ -4,7 +4,7 @@
     <form @submit.prevent="addStudent">
       <div class="search">
         <label for="usn" class="searchfield">USN</label>
-        <input type="text" name="usn" id="usn" class="input" v-model="usn" />
+        <input type="text" name="usn" id="usn" class="input"  v-model="usn" />
       </div>
 
       <div class="search">
@@ -29,6 +29,7 @@
 export default {
   name: "Home",
   mounted() {
+    
     this.$store.dispatch("setCourses").then(
       (response) => {
         console.log(response);
@@ -54,6 +55,17 @@ export default {
       }
     );
   },
+  beforeCreate(){
+    this.$store.dispatch("setStudentlist").then(
+      response => {
+        console.log(this.$store.getters.getStudentlist);
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
   data() {
     return {
       usn: "",
@@ -63,13 +75,16 @@ export default {
   },
   methods: {
     addStudent() {
+     this.usn = this.usn.toLowerCase();
       if (this.usn != "" && this.name != "" && this.section != "") {
-        console.log(localStorage.getItem("id"));
-        if (localStorage.getItem("id") != ""){
-          console.log("hello");
-          localStorage.setItem("loggeduser", "true");
+        for(var x=0;x<this.$store.getters.getStudentlist.length;x++){
+            if(this.$store.getters.getStudentlist[x].usn == this.usn){
+              localStorage.setItem("id", this.$store.getters.getStudentlist[x].id);
+              localStorage.setItem("loggeduser", "true");
+              localStorage.setItem("question", this.$store.getters.getStudentlist[x].question);
           this.$router.push("/details");
           return
+            }
         }
         this.$store
           .dispatch("addStudent", {

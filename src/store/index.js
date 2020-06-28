@@ -13,6 +13,7 @@ export default new Vuex.Store({
     questionlist: [],
     question: [],
     studentDetails: [],
+    studentlist: [],
     teacherlogin: false,
     adminlogin: false,
     studentlogin: false,
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     getQuestionlist: (state) => {
       return state.questionlist;
+    },
+    getStudentlist: (state) => {
+      return state.studentlist;
     },
     getQuestion: (state) => {
       return state.question;
@@ -73,6 +77,10 @@ export default new Vuex.Store({
     },
     setStudent(state, items) {
       state.studentDetails = items;
+    },
+    setStudentlist(state,items) {
+      state.studentlist = items;
+      console.log(state.studentlist)
     },
     addStudent(state, items) {
       state.studentID = items;
@@ -253,7 +261,6 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log("Error getting document", err);
         });
-      
     },
 
     addStudent({ commit }, payload) {
@@ -272,6 +279,22 @@ export default new Vuex.Store({
           // eslint-disable-next-line no-console
           console.log(error);
         });
+    },
+
+    setStudentlist(context) {
+      let items = [];
+      console.log(db.collection("studentlist").get());
+         db.collection("studentlist").get().then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+              items.push({
+                id: doc.id,
+                usn: doc.data().usn,
+                question: doc.data().question
+              });
+          });
+          console.log(items)
+          context.commit("setStudentlist", items);
+      });
     },
     studentLogin(context){
       context.commit("studentLogin");

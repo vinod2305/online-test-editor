@@ -10,6 +10,8 @@ localStorage.setItem('loggedadmin', 'false');
 localStorage.setItem('loggeduser', 'false')
 localStorage.setItem("loggedteacher", "false");
 localStorage.setItem("coursecode", "");
+localStorage.setItem("question", "");
+localStorage.setItem("id", "");
 
 const config = {
   apiKey: "AIzaSyCYLAGM8Z0kM8lt39E1OlEzzKGp-yL5UL4",

@@ -1,6 +1,9 @@
 <template>
   <div >
     <div class="loader" id="loader"></div>
+    <div class="question">
+      {{ this.question}}
+    </div>
     <div class="language">
           Language
           <select v-model="language" class="button1select" >
@@ -13,6 +16,7 @@
       <div class="text-editor">
           Code
         <textarea
+          onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"
           name="text-editor"
           v-model="code"
           id="text-editor"
@@ -70,6 +74,7 @@ import { db } from "@/main";
 import { storageRef } from '@/main';
 import axios from "axios";
 import router from "../router";
+import https from 'https';
 
 
 export default {
@@ -92,15 +97,22 @@ export default {
       input: "",
       output: "",
       run: false,
+      question: localStorage.getItem("question")
     };
   },
   methods: {
     axiosTest() {
-  return axios.post('http://3.7.167.244:80/', {
+      console.log(https)
+      https.globalAgent.options.rejectUnauthorized = false;
+  return axios.post('https://3.7.167.244:443/', {
     "lang":this.language,
     "code":this.code,
     "id":this.$store.getters.getStudent.usn,
     "stdin": this.input
+},{
+httpsAgent: new https.Agent({
+rejectUnauthorized: false
+})
 })
   .then(function (response) {
     return response;
@@ -248,6 +260,10 @@ firestoreUpload(thisRef,file){
   top: 50%;
   position: absolute;
   display: none;
+}
+.question{
+  margin: 15px 0;
+  font-size: 20px;
 }
 
 @keyframes spin {

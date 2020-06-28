@@ -50,6 +50,16 @@ export default {
         console.log(error);
       }
     );
+      if (localStorage.getItem("question") != "" ){
+      if (localStorage.getItem("question") == "undefined"){
+        return;
+      }
+      
+      this.press = true;
+      this.start = false;
+      document.getElementById("question").innerHTML = localStorage.getItem("question");
+      this.question = {question: localStorage.getItem("question")};
+    }
   },
   data() {
     return {
@@ -89,12 +99,10 @@ export default {
     fetchquestion(){
       
       let questionlist = this.$store.getters.getQuestionlist.filter(item => item.coursecode == this.coursecode);
-      console.log(questionlist);
       let x =Math.floor(Math.random() * questionlist.length)
-      console.log(x)
       this.question = questionlist[x];
-      console.log(this.question)
       document.getElementById("question").innerHTML = this.question.question;
+      localStorage.setItem("question", this.question.question)
       this.start = false;
 
     },
