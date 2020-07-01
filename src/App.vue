@@ -27,7 +27,7 @@ body {
   background-color: #ffffff;
   overflow: hidden;
   border-bottom: 0.8px solid #ececf0;
-  width: 100%;
+  width: auto;
   margin-bottom: 30px;
 
 
@@ -39,5 +39,15 @@ body {
       font-weight: bold;
   }
   
+  
+}
+@media only screen and (max-width: 768px) {
+  #nav{
+    width: auto !important;
+    padding: 15px;
+    .heading{
+      font-size: 23px;
+    }
+  }
 }
 </style>

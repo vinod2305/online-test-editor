@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { db } from "@/main";
-// eslint-disable-next-line no-unused-vars
 import router from "../router";
 
 Vue.use(Vuex);
@@ -78,20 +77,18 @@ export default new Vuex.Store({
     setStudent(state, items) {
       state.studentDetails = items;
     },
-    setStudentlist(state,items) {
+    setStudentlist(state, items) {
       state.studentlist = items;
-      console.log(state.studentlist)
     },
     addStudent(state, items) {
       state.studentID = items;
     },
-    studentLogin(state){
+    studentLogin(state) {
       state.studentlogin = true;
     },
-    studentLogout(state){
+    studentLogout(state) {
       state.studentlogin = false;
-    }
-
+    },
   },
   actions: {
     addCourse({ commit }, payload) {
@@ -117,7 +114,6 @@ export default new Vuex.Store({
           .delete()
           .then(function() {})
           .catch(function(error) {
-            // eslint-disable-next-line no-console
             console.log(error);
           });
       }
@@ -193,12 +189,10 @@ export default new Vuex.Store({
         .add(payload)
         .then((response) => {
           if (response) {
-            // eslint-disable-next-line no-console
             console.log(response);
           }
         })
         .catch((error) => {
-          // eslint-disable-next-line no-console
           console.log(error);
         });
     },
@@ -210,7 +204,6 @@ export default new Vuex.Store({
           .delete()
           .then(function() {})
           .catch(function(error) {
-            // eslint-disable-next-line no-console
             console.log(error);
           });
       }
@@ -269,37 +262,36 @@ export default new Vuex.Store({
         .then((response) => {
           if (response) {
             commit("addStudent", response.id);
-            // eslint-disable-next-line no-console
+
             localStorage.setItem("id", response.id);
             localStorage.setItem("loggeduser", "true");
             router.push("details");
           }
         })
         .catch((error) => {
-          // eslint-disable-next-line no-console
           console.log(error);
         });
     },
 
     setStudentlist(context) {
       let items = [];
-      console.log(db.collection("studentlist").get());
-         db.collection("studentlist").get().then(function(querySnapshot) {
+      db.collection("studentlist")
+        .get()
+        .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-              items.push({
-                id: doc.id,
-                usn: doc.data().usn,
-                question: doc.data().question
-              });
+            items.push({
+              id: doc.id,
+              usn: doc.data().usn,
+              question: doc.data().question,
+            });
           });
-          console.log(items)
           context.commit("setStudentlist", items);
-      });
+        });
     },
-    studentLogin(context){
+    studentLogin(context) {
       context.commit("studentLogin");
     },
-    studentLogout(context){
+    studentLogout(context) {
       context.commit("studentLogout");
     },
   },

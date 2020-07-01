@@ -4,7 +4,7 @@
     <form @submit.prevent="addStudent">
       <div class="search">
         <label for="usn" class="searchfield">USN</label>
-        <input type="text" name="usn" id="usn" class="input"  v-model="usn" />
+        <input type="text" name="usn" id="usn" class="input" v-model="usn" />
       </div>
 
       <div class="search">
@@ -58,7 +58,6 @@ export default {
   beforeCreate(){
     this.$store.dispatch("setStudentlist").then(
       response => {
-        console.log(this.$store.getters.getStudentlist);
         console.log(response);
       },
       error => {
@@ -173,5 +172,40 @@ export default {
   background: #ffffff;
   color: #497081;
   font-family: "Open sans", Helvetica, sans-serif;
+}
+
+@media only screen and (max-width: 768px) {
+  .frame{
+    margin: auto;
+  width: 70%;
+    position: relative;
+  left: 0;
+  transform: translateX(0px);
+  border-radius: 5px;
+  box-shadow: 1px 2px 10px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  padding: 20px;
+  background: #ffffff;
+  color: #497081;
+  font-family: "Open sans", Helvetica, sans-serif;
+  }
+  .heading{
+    font-size: 30px;
+  }
+  .search .searchfield{
+    font-size: 18px;
+  }
+  .search .input {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%; 
+    border-radius: 5px;
+    background: rgb(240, 240, 240);
+    color: #2a3036;
+    font-size: 18px;
+    padding: 3px;
+    outline: 0;
+    max-width: 100%;
+    
+  }
 }
 </style>

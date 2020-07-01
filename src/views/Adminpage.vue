@@ -8,8 +8,8 @@
         </div>
         <div class="inputbar">
           Semester
-          <select v-model="coursesem" class="button1select" >
-            <option disabled value="">Please select one</option>
+          <select v-model="coursesem" class="button1select">
+            <option disabled value>Please select one</option>
             <option>2</option>
             <option>4</option>
             <option>6</option>
@@ -31,18 +31,12 @@
               this.$store.getters.getCourselist.length > 0
           "
         >
-          <div
-            v-for="item in this.$store.getters.getCourselist"
-            :key="item.id"
-            class="titles"
-          >
+          <div v-for="item in this.$store.getters.getCourselist" :key="item.id" class="titles">
             <div class="task">{{ item.coursesem }}</div>
             <div class="task">{{ item.coursecode }}</div>
             <div class="task">{{ item.coursename }}</div>
             <small @click="deleteCourse(item.id)" class="delete">
-              <img
-                src="https://img.icons8.com/material-sharp/24/000000/delete-forever.png"
-              />
+              <img src="https://img.icons8.com/material-sharp/24/000000/delete-forever.png" />
             </small>
             <br />
           </div>
@@ -56,8 +50,8 @@
         </div>
         <div class="inputbar">
           Semester
-          <select v-model="teachersem" class="button1select" >
-            <option disabled value="">Please select one</option>
+          <select v-model="teachersem" class="button1select">
+            <option disabled value>Please select one</option>
             <option>2</option>
             <option>4</option>
             <option>6</option>
@@ -66,8 +60,8 @@
         </div>
         <div class="inputbar">
           Section
-          <select v-model="teachersect" class="button1select" >
-            <option disabled value="">Please select one</option>
+          <select v-model="teachersect" class="button1select">
+            <option disabled value>Please select one</option>
             <option>A</option>
             <option>B</option>
             <option>C</option>
@@ -84,18 +78,12 @@
               this.$store.getters.getTeacherlist.length > 0
           "
         >
-          <div
-            v-for="item in this.$store.getters.getTeacherlist"
-            :key="item.id"
-            class="titles"
-          >
+          <div v-for="item in this.$store.getters.getTeacherlist" :key="item.id" class="titles">
             <div class="task">{{ item.teachersem }}</div>
             <div class="task">{{ item.teachersect }}</div>
             <div class="task">{{ item.teachername }}</div>
             <small @click="deleteTeacher(item.id)" class="delete">
-              <img
-                src="https://img.icons8.com/material-sharp/24/000000/delete-forever.png"
-              />
+              <img src="https://img.icons8.com/material-sharp/24/000000/delete-forever.png" />
             </small>
             <br />
           </div>
@@ -109,18 +97,18 @@
 export default {
   mounted() {
     this.$store.dispatch("setCourses").then(
-      (response) => {
+      response => {
         console.log(response);
       },
-      (error) => {
+      error => {
         console.log(error);
       }
     );
     this.$store.dispatch("setTeacher").then(
-      (response) => {
+      response => {
         console.log(response);
       },
-      (error) => {
+      error => {
         console.log(error);
       }
     );
@@ -132,7 +120,7 @@ export default {
       coursesem: "",
       teachersem: "",
       teachersect: "",
-      teachername: "",
+      teachername: ""
     };
   },
   methods: {
@@ -146,7 +134,7 @@ export default {
           teachersem: this.teachersem,
           teachersect: this.teachersect,
           teachername: this.teachername,
-          created_at: Date.now(),
+          created_at: Date.now()
         });
         this.teachersem = "";
         this.teachersect = "";
@@ -168,7 +156,7 @@ export default {
           coursecode: this.coursecode,
           coursename: this.coursename,
           coursesem: this.coursesem,
-          created_at: Date.now(),
+          created_at: Date.now()
         });
         this.coursecode = "";
         this.coursename = "";
@@ -180,12 +168,11 @@ export default {
         this.$store.dispatch("deleteTeacher", id, { root: true });
       }
     },
-    logout(){
-    this.$router.push("/admin");
-    localStorage.setItem("loggedadmin", "false");      
+    logout() {
+      this.$router.push("/admin");
+      localStorage.setItem("loggedadmin", "false");
+    }
   }
-  },
-  
 };
 </script>
 
@@ -271,18 +258,18 @@ input {
     max-width: 100%;
   }
 }
-.button1select{
-    z-index: 10;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    width: 365px;
-    height: 20px;
-    border-radius: 5px;
-    background: #fff;
-    font-size: 15px;
-    outline: 0;
-    max-width: 100%;
+.button1select {
+  z-index: 10;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 365px;
+  height: 20px;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 15px;
+  outline: 0;
+  max-width: 100%;
 }
-.logout{
+.logout {
   background: #e72c2c;
   margin-left: 80%;
   color: #fff;

@@ -101,10 +101,8 @@ export default {
     };
   },
   methods: {
-    axiosTest() {
-      console.log(https)
-     
-  return axios.post('https://3.7.167.244:80/', {
+    axiosTest() {   
+  return axios.post('https://online-test-editor.me/', {
     "lang":this.language,
     "code":this.code,
     "id":this.$store.getters.getStudent.usn,
@@ -135,7 +133,6 @@ firestoreUpload(thisRef,file){
   });
 },
     runCode() {
-      console.log("hello")
       if(this.language == ""){
         alert("Choose a language");
         return 
@@ -308,6 +305,47 @@ firestoreUpload(thisRef,file){
 
 .submit {
   grid-area: submit;
+}
+
+@media only screen and (max-width: 768px) {
+  .question{
+    font-size: 18px;
+  }
+
+  .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "text-editor text-editor text-editor input" "text-editor text-editor text-editor output" "text-editor text-editor text-editor submit";
+}
+
+.text-area {
+    width: 100%;
+    height: 80vh;
+    line-height: 1em;
+    font-size: 10px;
+  }
+
+  .login-button {
+  background: rgb(236, 236, 236);
+  color: #444444;
+  display: block;
+  width: 100px;
+  height: 30px;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-sizing: border-box;
+  border-radius: 25px;
+  display: inline-block;
+  border-style: none;
+  margin-top: 20px;
+  border: 1px solid rgb(0, 0, 0);
+}
+
 }
 </style>
 

@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import firebase from 'firebase'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+import firebase from "firebase";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-localStorage.setItem('loggedadmin', 'false');
-localStorage.setItem('loggeduser', 'false')
+localStorage.setItem("loggedadmin", "false");
+localStorage.setItem("loggeduser", "false");
 localStorage.setItem("loggedteacher", "false");
 localStorage.setItem("coursecode", "");
 localStorage.setItem("question", "");
@@ -21,15 +21,15 @@ const config = {
   storageBucket: "online-test-editor.appspot.com",
   messagingSenderId: "1044370627682",
   appId: "1:1044370627682:web:e9c7efeb8d46ac778f453b",
-  measurementId: "G-7H1SHF7SWD"
-}
+  measurementId: "G-7H1SHF7SWD",
+};
 
-firebase.initializeApp(config)
+firebase.initializeApp(config);
 
-export const db = firebase.firestore()
+export const db = firebase.firestore();
 export var storageRef = firebase.storage().ref();
 new Vue({
   router,
   store,
-  render: h => h(App)
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
