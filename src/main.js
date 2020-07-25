@@ -13,16 +13,7 @@ localStorage.setItem("coursecode", "");
 localStorage.setItem("question", "");
 localStorage.setItem("id", "");
 
-const config = {
-  apiKey: "AIzaSyCYLAGM8Z0kM8lt39E1OlEzzKGp-yL5UL4",
-  authDomain: "online-test-editor.firebaseapp.com",
-  databaseURL: "https://online-test-editor.firebaseio.com",
-  projectId: "online-test-editor",
-  storageBucket: "online-test-editor.appspot.com",
-  messagingSenderId: "1044370627682",
-  appId: "1:1044370627682:web:e9c7efeb8d46ac778f453b",
-  measurementId: "G-7H1SHF7SWD",
-};
+const config = {};
 
 firebase.initializeApp(config);
 
