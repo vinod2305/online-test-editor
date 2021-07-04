@@ -23,7 +23,6 @@ npm install
    - firebase
 - **Styling**: SCSS 
 - **Database**: Cloud Firestore
-- **Authentication and Authorisation**: Firebase Authentication
 - **Storing submissions**: Firebase Storage
 
 
