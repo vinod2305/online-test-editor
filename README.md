@@ -29,7 +29,7 @@ npm install
 
 ## Functionality 
 + Portal for admin to add teachers and courses.
-+ Portal for teachers to questions for their respective section students.
++ Portal for teachers to add questions for their respective section students.
 + Students log in with their college credentials
 + Random question is allotted to the students based on the questions entered by their teachers.
 + Editor to write and test code.
